@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--déclaration d'un espace de nomage appelé th, correspondant à une balise thymeleaf-->
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h1 th:text="'Bonjour '+ ${nom}">Hello CDA</h1>
+<ul>
+    <li th:each="film : ${films}">
+        <a th:href="'film/'+ ${film.getId()}" th:text="${film.titre}">
+            film
+        </a>
+    </li>
+    <!--/*-->
+    <li>f1</li>
+    <li>f2</li>
+    <li>f3</li>
+    <!--*/-->
+</ul>
+</body>
+</html>
