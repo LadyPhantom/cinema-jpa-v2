@@ -1,7 +1,9 @@
 package fr.maskerad.cinema.web;
 
 import fr.maskerad.cinema.dao.FilmsDao;
+import fr.maskerad.cinema.service.AfficheImage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//@PropertySource("classpath:config.properties")
+
 @Controller
 public class MainController {
 
     @Autowired
     FilmsDao filmsDao;
 
+    @Autowired
+    AfficheImage img;
 
+    String imgPath;
 
     @GetMapping("/")
     public String main(Model model){
@@ -61,14 +68,16 @@ public class MainController {
 //    }
 
     // ------------------- 2eme méthode ---------------------------
+    // à déplacer dans service
 
-    @GetMapping(value = "/images", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getImage(HttpServletResponse response, @RequestParam("id") String id) throws IOException {
-
-        ClassPathResource imgFile = new ClassPathResource("affiches/"
-                + filmsDao.getById( Integer.parseInt(id)).getAfficheNom() );
-
-        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
-    }
+//    @GetMapping(value = "/images", produces = MediaType.IMAGE_JPEG_VALUE)
+//    public void getImage(HttpServletResponse response, @RequestParam("id") String id) throws IOException {
+//
+//        ClassPathResource imgFile = new ClassPathResource("affiches/"
+//                + filmsDao.getById( Integer.parseInt(id)).getAfficheNom() );
+//
+//        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+//        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
+//
+//    }
 }
