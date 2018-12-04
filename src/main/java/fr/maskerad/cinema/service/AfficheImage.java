@@ -33,7 +33,7 @@ public class AfficheImage {
 //                .contentType(MediaType.IMAGE_JPEG)
 //                .body(bytes);
 //    }
-
+    //
     public void getImage(
             HttpServletResponse response,
             @RequestParam("id") String id) throws IOException {
