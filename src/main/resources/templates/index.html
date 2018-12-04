@@ -6,10 +6,10 @@
     <title>Index</title>
 </head>
 <body>
-<h1 th:text="'Bonjour '+ ${nom}">Hello CDA</h1>
+
 <ul>
     <li th:each="film : ${films}">
-        <a th:href="'film/'+ ${film.getId()}" th:text="${film.titre}">
+        <a th:href="'film/'+ ${film.getTitre()}" th:text="${film.getTitre()}">
             film
         </a>
     </li>
@@ -19,5 +19,6 @@
     <li>f3</li>
     <!--*/-->
 </ul>
+
 </body>
 </html>

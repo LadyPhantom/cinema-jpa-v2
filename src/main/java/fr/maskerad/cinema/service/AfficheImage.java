@@ -18,7 +18,6 @@ public class AfficheImage {
     @Autowired
     FilmsDao filmsDao;
 
-
 //    public ResponseEntity<byte[]> getImage(String id) throws IOException {
 //
 //        ClassPathResource imgFile = new ClassPathResource( "affiches/"
@@ -33,13 +32,13 @@ public class AfficheImage {
 //                .contentType(MediaType.IMAGE_JPEG)
 //                .body(bytes);
 //    }
-    //
+
     public void getImage(
             HttpServletResponse response,
-            @RequestParam("id") String id) throws IOException {
+            @RequestParam("title") String title) throws IOException {
 
         ClassPathResource imgFile = new ClassPathResource("affiches/"
-                + filmsDao.getById(Integer.parseInt(id)).getAfficheNom());
+                + filmsDao.getByTitle(title).getAffiche() );
 
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
