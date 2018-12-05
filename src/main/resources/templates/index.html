@@ -9,7 +9,7 @@
 
 <ul>
     <li th:each="film : ${films}">
-        <a th:href="'film/'+ ${film.getTitre()}" th:text="${film.getTitre()}">
+        <a th:href="'film/'+ ${filmStat.index}" th:text="${film.getTitre()}">
             film
         </a>
     </li>

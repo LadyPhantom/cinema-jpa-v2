@@ -4,19 +4,19 @@ import fr.maskerad.cinema.dao.FilmsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+//@Controller
 public class AfficheImage {
 
-    @Autowired
-    FilmsDao filmsDao;
+//    @Autowired
+//    FilmsDao filmsDao;
 
 //    public ResponseEntity<byte[]> getImage(String id) throws IOException {
 //
@@ -33,15 +33,17 @@ public class AfficheImage {
 //                .body(bytes);
 //    }
 
-    public void getImage(
-            HttpServletResponse response,
-            @RequestParam("title") String title) throws IOException {
+//    @GetMapping(value = "/images", produces = MediaType.IMAGE_JPEG_VALUE)
+//    public void getImage(
+//            HttpServletResponse response,
+//            @RequestParam("title") String title) throws IOException {
+//
+//        ClassPathResource imgFile = new ClassPathResource("affiches/"
+//                + filmsDao.getByTitle(title).getAffiche() );
+//
+//        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+//        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
+//    }
 
-        ClassPathResource imgFile = new ClassPathResource("affiches/"
-                + filmsDao.getByTitle(title).getAffiche() );
-
-        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
-    }
 }
 

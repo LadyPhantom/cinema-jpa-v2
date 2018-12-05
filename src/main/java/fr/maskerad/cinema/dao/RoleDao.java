@@ -67,13 +67,13 @@ public class RoleDao {
         films.get(4).addRole(r);
         personnes.get(14).addRole(r);
         r = new Role(films.get(5), personnes.get(15), "Judas Ben-Hur", 1);
-        films.get(4).addRole(r);
+        films.get(5).addRole(r);
         personnes.get(15).addRole(r);
         r = new Role(films.get(5), personnes.get(16), "Messala", 2);
-        films.get(4).addRole(r);
+        films.get(5).addRole(r);
         personnes.get(16).addRole(r);
         r = new Role(films.get(5), personnes.get(17), "Quintus Arius", 3);
-        films.get(4).addRole(r);
+        films.get(5).addRole(r);
         personnes.get(17).addRole(r);
     }
 

@@ -11,6 +11,8 @@ public class Film {
     private String resume;
     private Personne realisateur;
     private List<Role> roles=new ArrayList<>();
+    private static int count = 0;
+    private int id;
 
     public Film(String titre, Double notation, String affiche, String resume, Personne realisateur) {
         this.titre = titre;
@@ -18,9 +20,21 @@ public class Film {
         this.resume = resume;
         this.affiche = affiche;
         this.realisateur = realisateur;
+
+        id = count;
+        count++;
+
     }
 
     public Film() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitre() {

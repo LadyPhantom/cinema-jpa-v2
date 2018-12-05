@@ -61,17 +61,16 @@ public class FilmsDao {
                         "qui arpente chaque nuit les trottoirs d'Hollywood Boulevard. La jeune femme ne fera qu'une " +
                         "bouchee du brillant PDG.",
                 new Personne("Marshall", "Garry", 1934, "p0098.jpg") ));
-        lesFilms.add(new Film("BEN-HUR",
-                4.0,
-                "f0006.jpg",
-                "Judas Ben-Hur, " +
-                        "prince de Judée, retrouve son ami d'enfance Messala, venu prendre la tête de la garnison de " +
-                        "Jérusalem. Mais leur amitié ne peut résister à leurs caractères différents. Alors qu'une " +
-                        "pierre tombe du balcon de la maison familiale de Ben-Hur, manquant de tuer le gouverneur " +
-                        "qui paradait plus bas, Messala trahit son ami qu'il sait innocent en l'envoyant aux galères " +
-                        "et en jetant en prison sa mère et sa sœur. Ben-Hur jure alors de reconquérir sa liberté " +
-                        "et prépare sa vengeance.",
-                new Personne("Wyler", "William", 1902, "p0044.jpg") ));
+        lesFilms.add(new Film("Légendes d'automne",
+                3.9,
+                "f0004.jpg",
+                "Au cœur des contrées sauvages du Montana, trois frères, Alfred, Tristan et Samuel sont " +
+                        "élevés par leur père, le colonel William Ludlow et ses amis indiens. Un jour, Samuel, " +
+                        "le plus fragile, présente sa ravissante fiancée, Susannah à sa famille. Les trois jeunes " +
+                        "hommes s’engagent dans la première Guerre Mondiale et Samuel décède sur le champ de " +
+                        "bataille. A leur retour, Tristan et Alfred se battent pour conquérir le cœur de " +
+                        "la belle veuve.",
+                new Personne("Zwick", "Edward", 1952, "p0020.jpg") ));
         lesFilms.add(new Film("E.T. l'extra-terrestre",
                 4.2,
                 "f0005.jpg",
@@ -85,16 +84,17 @@ public class FilmsDao {
                         "ne tardent pas à devenir amis. Aidé par sa soeur Gertie et son frère aîné Michael, Elliot " +
                         "va alors tenter de garder la présence d'E.T. secrète.",
                 new Personne("Spielberg", "Steven", 1946, "p0019.jpg") ));
-        lesFilms.add(new Film("Légendes d'automne",
-                3.9,
-                "f0004.jpg",
-                "Au cœur des contrées sauvages du Montana, trois frères, Alfred, Tristan et Samuel sont " +
-                        "élevés par leur père, le colonel William Ludlow et ses amis indiens. Un jour, Samuel, " +
-                        "le plus fragile, présente sa ravissante fiancée, Susannah à sa famille. Les trois jeunes " +
-                        "hommes s’engagent dans la première Guerre Mondiale et Samuel décède sur le champ de " +
-                        "bataille. A leur retour, Tristan et Alfred se battent pour conquérir le cœur de " +
-                        "la belle veuve.",
-                new Personne("Zwick", "Edward", 1952, "p0020.jpg") ));
+        lesFilms.add(new Film("BEN-HUR",
+                4.0,
+                "f0006.jpg",
+                "Judas Ben-Hur, " +
+                        "prince de Judée, retrouve son ami d'enfance Messala, venu prendre la tête de la garnison de " +
+                        "Jérusalem. Mais leur amitié ne peut résister à leurs caractères différents. Alors qu'une " +
+                        "pierre tombe du balcon de la maison familiale de Ben-Hur, manquant de tuer le gouverneur " +
+                        "qui paradait plus bas, Messala trahit son ami qu'il sait innocent en l'envoyant aux galères " +
+                        "et en jetant en prison sa mère et sa sœur. Ben-Hur jure alors de reconquérir sa liberté " +
+                        "et prépare sa vengeance.",
+                new Personne("Wyler", "William", 1902, "p0044.jpg") ));
 
     }
 
@@ -114,9 +114,21 @@ public class FilmsDao {
 
         }
         return film;
-
     }
 
+    public Film getById(int id){
 
+//        Film film = lesFilms.get(id);
+        Film film = null;
+
+        for (Film f: lesFilms) {
+
+            if(f.getId() == id){
+                film = f;
+            }
+
+        }
+        return film;
+    }
 
 }

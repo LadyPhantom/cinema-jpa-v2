@@ -54,11 +54,17 @@ public class MainController {
 //        return "detail"; //template
 //    }
 
-    @GetMapping("/film/{title}")//nom_mapping (chemin) différent du nom_template
-    public String detail(Model model, @PathVariable("title") String title){
-//        Integer idFilm = Integer.parseInt(id);
-        model.addAttribute("film", filmsDao.getByTitle(title));
-        return "detail"; //template
+    @GetMapping("/film/{id}")//nom_mapping (chemin) différent du nom_template
+    public String detail(Model model, @PathVariable("id") String id){
+        Integer idFilm = Integer.parseInt(id);
+        model.addAttribute("film", filmsDao.getById(idFilm) );
+        return "detail";
+    }
+
+    @GetMapping("/acteur/{lname}")
+    public String acteur(Model model, @PathVariable("lname") String lname){
+        model.addAttribute("acteur", personnesDao.getByLastName(lname) );
+        return "acteur";
     }
 
     // ------------------- 1ere méthode ---------------------------
@@ -80,18 +86,32 @@ public class MainController {
 //    }
 
     // ------------------- 2eme méthode ---------------------------
-    // à déplacer dans service
 
-//    @GetMapping(value = "/images", produces = MediaType.IMAGE_JPEG_VALUE)
-//    public void getImage(HttpServletResponse response, @RequestParam("id") String id) throws IOException {
-//
-//        ClassPathResource imgFile = new ClassPathResource("affiches/"
-//                + filmsDao.getById( Integer.parseInt(id)).getAfficheNom() );
-//
-//        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-//        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
-//
-//    }
+    @GetMapping(value = "/images/affiches/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImageAffiche(HttpServletResponse response, @PathVariable("id") String id) throws IOException {
+
+        ClassPathResource imgFile;
+
+        imgFile = new ClassPathResource("images/affiches/"
+                    + filmsDao.getById( Integer.parseInt(id) ).getAffiche() );
+
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
+
+    }
+
+    @GetMapping(value = "/images/personnes/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImagePersonne(HttpServletResponse response, @PathVariable("id") String id) throws IOException {
+
+        ClassPathResource imgFile;
+
+        imgFile = new ClassPathResource("images/personnes/"
+                    + filmsDao.getById( Integer.parseInt(id) ).getRealisateur().getPhotoPath() );
+
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
+
+    }
 
     @PostConstruct
     public void init(){

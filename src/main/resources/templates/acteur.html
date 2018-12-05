@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${acteur.getNom() + ' ' + acteur.getPrenom()}">Detail acteur</title>
+</head>
+<body>
+
+<ul>
+    <li th:each="role : ${acteur.getRoles()}">
+        <a th:text="${role.getActeur().getNom()} + ' ' + ${role.getActeur().getPrenom()} + ' joue ' + ${role.getAlias()}
+        + ' dans ' + ${role.getFilm().getTitre()}"
+           th:href="@{'~/film/' + ${role.getFilm().getId()}}">
+            film
+        </a>
+    </li>
+</ul>
+
+
+</body>
+</html>
