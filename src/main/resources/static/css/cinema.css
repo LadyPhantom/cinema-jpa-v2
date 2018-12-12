@@ -1,0 +1,31 @@
+.moviePoster{
+    float:left;
+    padding: 5px;
+    width: 25%;
+}
+
+.moviePoster img{
+    width: 100%
+}
+
+.movieDescription{
+    padding: 5px;
+    float: left;
+    text-align: justify;
+    max-width: 75%;
+    width: auto;
+}
+
+.actorList{
+    clear:both;
+    margin: auto;
+}
+
+.img_mini_affiche{
+    max-width: 75px;
+    height: auto;
+}
+
+#photoPersonne img{
+    max-height: 150px ;
+}

@@ -1,49 +1,31 @@
 package fr.maskerad.cinema.service;
 
-import fr.maskerad.cinema.dao.FilmsDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-//@Controller
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+//import org.springframework.validation.annotation.Validated;
+//
+//@Component
+//@ConfigurationProperties(prefix = "affiche-img")
+//@Validated
 public class AfficheImage {
 
-//    @Autowired
-//    FilmsDao filmsDao;
-
-//    public ResponseEntity<byte[]> getImage(String id) throws IOException {
+//    private String affiche;
+//    private String personne;
 //
-//        ClassPathResource imgFile = new ClassPathResource( "affiches/"
-//                + filmsDao.getById( Integer.parseInt(id)).getAfficheNom() );
-//
-//          // transform inputStream (image) en bytes
-//        byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
-//
-//          // On écrit dans le corps (body) de la réponse http en précisant le type de contenu (image_jpeg)
-//        return ResponseEntity
-//                .ok()
-//                .contentType(MediaType.IMAGE_JPEG)
-//                .body(bytes);
+//    public String getAffiche() {
+//        return affiche;
 //    }
-
-//    @GetMapping(value = "/images", produces = MediaType.IMAGE_JPEG_VALUE)
-//    public void getImage(
-//            HttpServletResponse response,
-//            @RequestParam("title") String title) throws IOException {
 //
-//        ClassPathResource imgFile = new ClassPathResource("affiches/"
-//                + filmsDao.getByTitle(title).getAffiche() );
-//
-//        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-//        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
+//    public void setAffiche(String affiche) {
+//        this.affiche = affiche;
 //    }
-
+//
+//    public String getPersonne() {
+//        return personne;
+//    }
+//
+//    public void setPersonne(String personne) {
+//        this.personne = personne;
+//    }
 }
 

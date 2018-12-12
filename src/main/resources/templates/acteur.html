@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${acteur.getNom() + ' ' + acteur.getPrenom()}">Detail acteur</title>
+
+    <!--<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"-->
+          <!--href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" />-->
+
+    <link rel="stylesheet" th:href="@{/css/cinema.css}"
+          href="cinema.css" />
+
+    <div th:replace="vues/header :: head"></div>
+
 </head>
 <body>
 
-<ul>
-    <li th:each="role : ${acteur.getRoles()}">
-        <a th:text="${role.getActeur().getNom()} + ' ' + ${role.getActeur().getPrenom()} + ' joue ' + ${role.getAlias()}
-        + ' dans ' + ${role.getFilm().getTitre()}"
-           th:href="@{'~/film/' + ${role.getFilm().getId()}}">
-            film
-        </a>
-    </li>
-</ul>
+<nav th:replace="vues/header :: header-nav"></nav>
 
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3" th:text="${acteur.getNom() + ' ' + acteur.getPrenom()}"></h1>
+            <p th:text="'Né(e) en : ' + ${acteur.getNaissance()}">date naissance</p>
+            <p id="photoPersonne" >
+                <img th:src="@{ '~/images/personnes/' + ${acteur.getPhotoPath()} }">
+            </p>
+        </div>
+
+    </div>
+
+    <h3 th:text="'Liste des roles joué par l\'acteur : ' " style="text-align: center;"> Acteurs </h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" th:each="role : ${acteur.getRoles()}">
+                <h2 th:text="${role.getAlias()} + ' dans ' + ${role.getFilm().getTitre()}">role</h2>
+                <p><a class="btn btn-secondary" th:href="@{'~/film/' + ${role.getFilm().getId()}}" th:text="'Voir détails film.'" role="button">View details &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer th:replace="vues/header :: footer"> footer </footer>
 
 </body>
 </html>

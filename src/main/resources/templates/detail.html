@@ -4,66 +4,87 @@
     <meta charset="UTF-8">
     <title th:text="${film.getTitre()}">Détail Film</title>
 
-    <style>
-        div img{
-            float: left;
-        }
+    <link rel="stylesheet" th:href="@{/css/cinema.css}"
+          href="cinema.css" />
 
-        div p{
-            text-align: justify;
-
-        }
-
-        div{
-            text-align: center;
-            clear: both;
-        }
-
-        h3{
-            text-align: left;
-        }
-
-    </style>
+    <div th:replace="vues/header :: head"></div>
 
 </head>
 <body>
 
-    <div>
-        <img th:src="@{'~/images/affiches/'+ ${film.getId()} }" style="max-height: 500px;" />
+<nav th:replace="vues/header :: header-nav"></nav>
 
-        <h1 th:text="${film.getTitre()}">Titre</h1>
-        <h2>Note: <span th:text="${film.getNotation()}">Note</span></h2>
+<main role="main">
 
-        <p th:text="${film.getResume()}">Resume</p>
+    <div class="jumbotron">
 
-        <h3 th:text="'Réalisateur : ' + ${film.getRealisateur().getNom()} + ', '
+        <div class="container">
+
+            <!-- //////////// Affiche /////////////-->
+            <div class="moviePoster" >
+                <img th:src="@{'~/images/affiches/'+ ${film.getId()} }" />
+            </div>
+
+            <!-- //////////// Détails film /////////////-->
+            <div class="movieDescription" >
+                <h1 th:text="${film.getTitre()}">Titre</h1>
+                <p th:text="${film.getResume()}">Resume</p>
+                <h2>Note: <span th:text="${film.getNotation()}">Note</span></h2>
+
+                <!-- //////////// Réalisateur /////////////-->
+                <h3 th:text="'Réalisateur : ' + ${film.getRealisateur().getNom()} + ', '
                                         + ${film.getRealisateur().getPrenom()}">
-            Realisateur
-        </h3>
+                    Realisateur
+                </h3>
 
-        <p id="photoRealisateur">
-            <img th:src="@{'~/images/personnes/' + ${film.getId()}}" style="max-height: 150px;"  />
-        </p>
+                <p id="photoPersonne">
+                    <img th:src="@{'~/images/personnes/' + ${film.getRealisateur().getPhotoPath()}}" />
+                </p>
 
-        <div>
-            <!--Liste des acteurs-->
-
-            <h3 th:text="'Acteurs : ' ">
-                Realisateur
-            </h3>
-
-            <ul>
-                <li th:each="role : ${film.getRoles()}">
-                    <a th:href="@{'~/acteur/' + ${role.getActeur().getNom()}}" th:text="${role.getActeur().getNom()}
-            + ' ' + ${role.getActeur().getPrenom()} + ' joue ' + ${role.getAlias()}">
-                        film
-                    </a>
-                </li>
-            </ul>
-
+            </div>
         </div>
 
     </div>
+
+    <!-- //////////// Acteurs /////////////-->
+
+    <!--<div class="actorList">-->
+        <!--<h3 th:text="'Acteurs : ' "> Acteurs </h3>-->
+
+        <!--<ul>-->
+            <!--<li th:each="role : ${film.getRoles()}">-->
+                <!--<a th:href="@{'~/acteur/' + ${role.getActeur().getNom()}}" th:text="${role.getActeur().getNom()}-->
+                        <!--+ ' ' + ${role.getActeur().getPrenom()} + ' joue ' + ${role.getAlias()}">-->
+                    <!--film-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+
+    <!--</div>-->
+
+    <h3 th:text="'Acteurs : ' " style="clear:both; text-align: center;"> Acteurs </h3>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4" th:each="role : ${film.getRoles()}">
+                <h2 th:text="${role.getActeur().getNom()}
+                        + ' ' + ${role.getActeur().getPrenom()}">Nom prenom</h2>
+
+                <p th:text="'Dans le role de ' + ${role.getAlias()}">Role</p>
+                <p>
+                    <a class="btn btn-secondary" th:href="@{'~/acteur/' + ${role.getActeur().getNom()}}"
+                      th:text="'Voir détails'" role="button">View details &raquo;</a>
+                </p>
+
+            </div>
+        </div>
+        <hr>
+    </div>
+
+</main>
+
+    <footer th:replace="vues/header :: footer"> footer </footer>
 
 </body>
 </html>

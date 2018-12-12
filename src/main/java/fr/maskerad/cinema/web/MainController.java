@@ -6,6 +6,7 @@ import fr.maskerad.cinema.dao.RoleDao;
 import fr.maskerad.cinema.model.DataModel;
 import fr.maskerad.cinema.service.AfficheImage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
@@ -31,6 +32,9 @@ public class MainController {
     FilmsDao filmsDao;
 
     RoleDao roleDao;
+
+//    @Autowired
+//    AfficheImage afficheImage;
 
 //    @Autowired
 //    AfficheImage img;
@@ -94,19 +98,21 @@ public class MainController {
 
         imgFile = new ClassPathResource("images/affiches/"
                     + filmsDao.getById( Integer.parseInt(id) ).getAffiche() );
+//        imgFile = new ClassPathResource(afficheImage.getAffiche() + filmsDao.getById( Integer.parseInt(id) ).getAffiche());
 
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
 
     }
 
-    @GetMapping(value = "/images/personnes/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getImagePersonne(HttpServletResponse response, @PathVariable("id") String id) throws IOException {
+    @GetMapping(value = "/images/personnes/{photoPath}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImagePersonne(HttpServletResponse response, @PathVariable("photoPath") String photoPath) throws IOException {
 
         ClassPathResource imgFile;
 
         imgFile = new ClassPathResource("images/personnes/"
-                    + filmsDao.getById( Integer.parseInt(id) ).getRealisateur().getPhotoPath() );
+                    + photoPath );
+//        imgFile = new ClassPathResource(afficheImage.getPersonne() + filmsDao.getById( Integer.parseInt(id) ).getRealisateur().getPhotoPath() );
 
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
