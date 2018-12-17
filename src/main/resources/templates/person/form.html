@@ -13,7 +13,13 @@
     <p>Nom : <input type="text" th:field="*{nom}"/></p>
     <p>Annee de naissance : <input type="text" th:field="*{naissance}"/></p>
     <p>Photo : <input type="text" th:field="*{photoPath}"/></p>
+
+    <p>
+        Photo : <input type="file" name="photo" >
+    </p>
+
     <input type="submit" value="Valider" />
 </form>
+
 </body>
 </html>

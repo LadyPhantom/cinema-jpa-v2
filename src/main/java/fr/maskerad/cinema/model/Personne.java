@@ -12,7 +12,6 @@ public class Personne {
     private Integer naissance;
     private String photoPath;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

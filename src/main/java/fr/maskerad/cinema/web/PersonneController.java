@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/person")
@@ -42,7 +45,16 @@ public class PersonneController {
     }
 
     @PostMapping("/add")
-    public String submit(@ModelAttribute Personne personne){
+    public String submit(@RequestParam("photo") MultipartFile file , @ModelAttribute Personne personne){
+
+//        if (file.getContentType().equalsIgnoreCase("image/jpeg")){
+//            try{
+//                imm.savePhoto(personne, file.getInputStream() );
+//            }catch (IOException e){
+//                System.out.println("Errerur lecture : " + e.getMessage());
+//            }
+//        }
+
         personneDao.save(personne);
         return "redirect:/person/list";
     }

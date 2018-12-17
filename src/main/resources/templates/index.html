@@ -13,34 +13,31 @@
 </head>
 <body>
 
-<nav th:replace="vues/header :: header-nav"></nav>
+<!--<nav th:replace="vues/header :: header-nav"></nav>-->
 
 <main role="main">
 
-    <!--<div class="jumbotron">-->
-        <!--<div class="container">-->
-            <!--<h1 class="display-3">Films du cinéma</h1>-->
-            <!--<p>Liste des films.</p>-->
-        <!--</div>-->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Films du cinéma</h1>
+            <p>Liste des films.</p>
+        </div>
 
-    <!--</div>-->
+    </div>
 
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-4" th:each="film : ${films}">-->
-                <!--<h2 th:text="${film.getTitre()}">Heading</h2>-->
-                <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
-                <!--<img th:src="@{ '~/images/affiches/'+ ${film.getId()} }" class="img_mini_affiche" >-->
-                <!--<p><a class="btn btn-secondary" th:href="'film/'+ ${filmStat.index}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" th:each="film : ${films}">
+                <h2 th:text="${film.getTitre()}">Heading</h2>
+                <img th:src="@{ '~/images/affiches/'+ ${film.getId()} }" class="img_mini_affiche" >
+                <p><a class="btn btn-secondary" th:href="'film/'+ ${film.getId()}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li th:each="">
+    <a href="/person/list" th:text="'liste de personnes'">link</a>
 
-        </li>
-    </ul>
+    <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
 
 </main>
 

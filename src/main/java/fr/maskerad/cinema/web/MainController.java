@@ -32,16 +32,9 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model){
-        model.addAttribute("films", filmsDao.films());
+        model.addAttribute("films", filmsDao.getAll());
         return "index";
     }
-
-//    @GetMapping("/film")//nom_mapping (chemin) différent du nom_template
-//    public String detail(Model model, @RequestParam("id") String id){
-//        Integer idFilm = Integer.parseInt(id);
-//        model.addAttribute("film", filmsDao.getById(idFilm));
-//        return "detail"; //template
-//    }
 
     @GetMapping("/film/{id}")//nom_mapping (chemin) différent du nom_template
     public String detail(Model model, @PathVariable("id") String id){
