@@ -1,16 +1,11 @@
 package fr.maskerad.cinema.web;
 
 import fr.maskerad.cinema.dao.FilmsDao;
-import fr.maskerad.cinema.dao.PersonnesDao;
+import fr.maskerad.cinema.dao.PersonneDao;
 import fr.maskerad.cinema.dao.RoleDao;
-import fr.maskerad.cinema.model.DataModel;
-import fr.maskerad.cinema.service.AfficheImage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StreamUtils;
@@ -26,27 +21,17 @@ import java.io.IOException;
 public class MainController {
 
     @Autowired
-    PersonnesDao personnesDao;
+    PersonneDao personnesDao;
 
     @Autowired
     FilmsDao filmsDao;
 
     RoleDao roleDao;
 
-//    @Autowired
-//    AfficheImage afficheImage;
-
-//    @Autowired
-//    AfficheImage img;
-
-//    @Autowired
-//    DataModel dataModel;
-
     String imgPath;
 
     @GetMapping("/")
     public String main(Model model){
-//        model.addAttribute("nom", "Karl");
         model.addAttribute("films", filmsDao.films());
         return "index";
     }
@@ -63,12 +48,6 @@ public class MainController {
         Integer idFilm = Integer.parseInt(id);
         model.addAttribute("film", filmsDao.getById(idFilm) );
         return "detail";
-    }
-
-    @GetMapping("/acteur/{lname}")
-    public String acteur(Model model, @PathVariable("lname") String lname){
-        model.addAttribute("acteur", personnesDao.getByLastName(lname) );
-        return "acteur";
     }
 
     // ------------------- 1ere méthode ---------------------------
@@ -119,9 +98,9 @@ public class MainController {
 
     }
 
-    @PostConstruct
-    public void init(){
-        roleDao = new RoleDao(personnesDao.personnes(), filmsDao.films());
-    }
+//    @PostConstruct
+//    public void init(){
+//        roleDao = new RoleDao(personnesDao.personnes(), filmsDao.films());
+//    }
 
 }

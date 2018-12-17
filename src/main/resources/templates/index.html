@@ -5,12 +5,6 @@
     <meta charset="UTF-8">
     <title>Index</title>
 
-    <!--<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"-->
-          <!--href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" />-->
-
-    <!--<link rel="stylesheet" th:href="@{/static/css/cinema.css}"-->
-          <!--href="/static/css/cinema.css" />-->
-
     <link rel="stylesheet" th:href="@{/css/cinema.css}"
           href="cinema.css" />
 
@@ -23,36 +17,30 @@
 
 <main role="main">
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Films du cinéma</h1>
-            <p>Liste des films.</p>
-            <!--<ul>-->
-            <!--<li th:each="film : ${films}">-->
-            <!--<a th:href="'film/'+ ${filmStat.index}" th:text="${film.getTitre()}">-->
-            <!--film-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--&lt;!&ndash;/*&ndash;&gt;-->
-            <!--<li>f1</li>-->
-            <!--<li>f2</li>-->
-            <!--<li>f3</li>-->
-            <!--&lt;!&ndash;*/&ndash;&gt;-->
-            <!--</ul>-->
-        </div>
+    <!--<div class="jumbotron">-->
+        <!--<div class="container">-->
+            <!--<h1 class="display-3">Films du cinéma</h1>-->
+            <!--<p>Liste des films.</p>-->
+        <!--</div>-->
 
-    </div>
+    <!--</div>-->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4" th:each="film : ${films}">
-                <h2 th:text="${film.getTitre()}">Heading</h2>
-                <!--<p></p>-->
-                <img th:src="@{ '~/images/affiches/'+ ${film.getId()} }" class="img_mini_affiche" >
-                <p><a class="btn btn-secondary" th:href="'film/'+ ${filmStat.index}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-    </div>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-4" th:each="film : ${films}">-->
+                <!--<h2 th:text="${film.getTitre()}">Heading</h2>-->
+                <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
+                <!--<img th:src="@{ '~/images/affiches/'+ ${film.getId()} }" class="img_mini_affiche" >-->
+                <!--<p><a class="btn btn-secondary" th:href="'film/'+ ${filmStat.index}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <ul>
+        <li th:each="">
+
+        </li>
+    </ul>
 
 </main>
 

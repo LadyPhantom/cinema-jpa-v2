@@ -1,90 +1,100 @@
 package fr.maskerad.cinema.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "persons")
 public class Personne {
+
+    private long id;
     private String nom;
     private String prenom;
     private Integer naissance;
     private String photoPath;
-    public List<Role> roles=new ArrayList<>();
 
-    public Personne(String nom, String prenom, Integer naissance, String photoPath) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.naissance = naissance;
-        this.photoPath = photoPath;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    public long getId() {
+        return id;
     }
 
-    public Personne() {
+    public void setId(long id) {
+        this.id = id;
     }
 
+    @Basic
+    @Column(name = "surname", nullable = false, length = 60)
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom(String surname) {
+        this.nom = surname;
     }
 
+    @Basic
+    @Column(name = "givenname", nullable = true, length = 40)
     public String getPrenom() {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenom(String givenname) {
+        this.prenom = givenname;
     }
 
+    @Basic
+    @Column(name = "birth_year", nullable = true)
     public Integer getNaissance() {
         return naissance;
     }
 
-    public void setNaissance(Integer naissance) {
-        this.naissance = naissance;
+    public void setNaissance(Integer birthYear) {
+        this.naissance = birthYear;
     }
 
+    @Basic
+    @Column(name = "image_path", nullable = true, length = 80)
     public String getPhotoPath() {
         return photoPath;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setPhotoPath(String imagePath) {
+        this.photoPath = imagePath;
     }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void addRole(Role role){
-        this.roles.add(role);
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Personne)) return false;
-        Personne personne = (Personne) o;
-        return Objects.equals(getNom(), personne.getNom()) &&
-                Objects.equals(getPrenom(), personne.getPrenom()) &&
-                Objects.equals(getNaissance(), personne.getNaissance());
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Personne persons = (Personne) o;
+
+        if (id != persons.id) return false;
+        if (nom != null ? !nom.equals(persons.nom) : persons.nom != null) return false;
+        if (prenom != null ? !prenom.equals(persons.prenom) : persons.prenom != null) return false;
+        if (naissance != null ? !naissance.equals(persons.naissance) : persons.naissance != null) return false;
+        if (photoPath != null ? !photoPath.equals(persons.photoPath) : persons.photoPath != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNom(), getPrenom(), getNaissance());
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (nom != null ? nom.hashCode() : 0);
+        result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
+        result = 31 * result + (naissance != null ? naissance.hashCode() : 0);
+        result = 31 * result + (photoPath != null ? photoPath.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Personne{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", naissance=" + naissance +
                 ", photoPath='" + photoPath + '\'' +
