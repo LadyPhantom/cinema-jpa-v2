@@ -2,6 +2,7 @@ package fr.maskerad.cinema.web;
 
 import fr.maskerad.cinema.dao.PersonneDao;
 import fr.maskerad.cinema.model.Personne;
+import fr.maskerad.cinema.service.ImageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,21 +18,24 @@ public class PersonneController {
     @Autowired
     PersonneDao personneDao;
 
+    @Autowired
+    ImageManager imm;
+
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("personnes", personneDao.getAll());
+        model.addAttribute("personnes", personneDao.findAll());
         return "person/list";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/{id}")
     public String detail(@PathVariable("id") long id, Model model){
-        model.addAttribute("personne", personneDao.getById(id));
+        model.addAttribute("personne", personneDao.findById(id).get() );
         return "person/detail";
     }
 
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id")long id, Model model){
-        Personne p = personneDao.getById(id);
+        Personne p = personneDao.findById(id).get();
         System.out.println(p);
         model.addAttribute("personne", p);
         return "person/form";
@@ -46,15 +50,13 @@ public class PersonneController {
 
     @PostMapping("/add")
     public String submit(@RequestParam("photo") MultipartFile file , @ModelAttribute Personne personne){
-
-//        if (file.getContentType().equalsIgnoreCase("image/jpeg")){
-//            try{
-//                imm.savePhoto(personne, file.getInputStream() );
-//            }catch (IOException e){
-//                System.out.println("Errerur lecture : " + e.getMessage());
-//            }
-//        }
-
+        if(file.getContentType().equalsIgnoreCase("image/jpeg")){
+            try {
+                imm.savePhoto(personne, file.getInputStream());
+            } catch (IOException ioe){
+                System.out.println("Erreur lecture : "+ioe.getMessage());
+            }
+        }
         personneDao.save(personne);
         return "redirect:/person/list";
     }

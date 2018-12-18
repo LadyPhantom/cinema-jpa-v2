@@ -29,3 +29,5 @@
 #photoPersonne img{
     max-height: 150px ;
 }
+
+body { padding-top: 70px; }

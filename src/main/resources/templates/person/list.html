@@ -3,14 +3,44 @@
 xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Liste des personnes</title>
+
+    <link rel="stylesheet" th:href="@{/css/cinema.css}"
+          href="cinema.css" />
+
+    <div th:replace="vues/header :: head"></div>
+
 </head>
 <body>
-<table>
-    <tr th:each="personne: ${personnes}">
-        <td><span th:utext="${personne.nom}"></span> <a href="#" th:href="@{'/person/detail/'+${personne.id}}">detail</a> </td>
-    </tr>
-</table>
+
+<nav th:replace="vues/header :: header-nav"></nav>
+
+    <main role="main">
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Liste des personnes</h1>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" th:each="personne: ${personnes}">
+                    <h2 th:text="${personne.getNom()}">Heading</h2>
+                    <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
+                    <p><a class="btn btn-secondary" th:href="${personne.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+
+        <a href="/person/list" th:text="'liste de personnes'">link</a>
+
+        <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
+
+    </main>
+
+    <footer th:replace="vues/header :: footer"> footer </footer>
 
 </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--déclaration d'un espace de nomage appelé th, correspondant à une balise thymeleaf-->
+
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title> Accueil </title>
 
     <link rel="stylesheet" th:href="@{/css/cinema.css}"
           href="cinema.css" />
@@ -13,31 +13,25 @@
 </head>
 <body>
 
-<!--<nav th:replace="vues/header :: header-nav"></nav>-->
+<nav th:replace="vues/header :: header-nav"></nav>
 
 <main role="main">
 
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-3">Films du cinéma</h1>
-            <p>Liste des films.</p>
+            <h1 class="display-3">Accueil du cinéma</h1>
+
+            <a href="/person/list" th:text="'liste de personnes'">link</a><br/>
+
+            <a href="/person/add" th:text="'formulaire création de personnes'">link</a><br/>
+
+            <a href="/film/list" th:text="'liste de films'">link</a><br/>
+
+            <a href="/film/add" th:text="'formulaire création de film'">link</a><br/>
+
         </div>
 
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4" th:each="film : ${films}">
-                <h2 th:text="${film.getTitre()}">Heading</h2>
-                <img th:src="@{ '~/images/affiches/'+ ${film.getId()} }" class="img_mini_affiche" >
-                <p><a class="btn btn-secondary" th:href="'film/'+ ${film.getId()}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <a href="/person/list" th:text="'liste de personnes'">link</a>
-
-    <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
 
 </main>
 

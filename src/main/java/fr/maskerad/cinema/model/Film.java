@@ -1,9 +1,6 @@
 package fr.maskerad.cinema.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "films")
@@ -14,11 +11,9 @@ public class Film {
     private Double notation;
     private String affiche;
     private String resume;
-//    private Personne realisateur;
-//    private List<Role> roles=new ArrayList<>();
+    private Personne realisateur;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public long getId() {
         return id;
@@ -29,7 +24,7 @@ public class Film {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 80)
+    @Column(name = "title", nullable = true, length = 80)
     public String getTitre() {
         return titre;
     }
@@ -39,7 +34,7 @@ public class Film {
     }
 
     @Basic
-    @Column(name = "rating", nullable = true)
+    @Column(name = "rating", nullable = true, precision = 1)
     public double getNotation() { return notation; }
 
     public void setNotation(double notation) { this.notation = notation; }
@@ -59,6 +54,19 @@ public class Film {
     public String getResume() { return affiche; }
 
     public void setResume(String resume) { this.resume = resume; }
+
+    @ManyToOne
+    @JoinColumn(name ="film_director")
+    public Personne getRealisateur() {
+        return realisateur;
+    }
+
+    public void setRealisateur(Personne person) {
+        this.realisateur = person;
+    }
+
+
+
 
     @Override
     public boolean equals(Object o) {
