@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${film.titre}">Détail Film</title>
+    <title th:text="${film.title}">Détail Film</title>
 
     <link rel="stylesheet" th:href="@{/css/cinema.css}"
           href="cinema.css" />
@@ -27,64 +27,48 @@
 
             <!-- //////////// Détails film /////////////-->
             <div class="movieDescription" >
-                <h1 th:text="${film.getTitre()}">Titre</h1>
-                <p th:text="${film.getResume()}">Resume</p>
-                <h2>Note: <span th:text="${film.getResume()}">Note</span></h2>
+                <h1 th:text="${film.getTitle()}">Titre</h1>
+                <p th:text="${film.getSummary()}">Resume</p>
+                <h2>Note: <span th:text="${film.getRating()}">Note</span></h2>
 
-                <!-- //////////// Réalisateur /////////////-->
-                <!--<h3 th:text="'Réalisateur : ' + ${film.getRealisateur().getNom()} + ', '-->
-                                        <!--+ ${film.getRealisateur().getPrenom()}">-->
-                    <!--Realisateur-->
-                <!--</h3>-->
+                 <!--//////////// Réalisateur /////////////-->
+                <h3 th:text="'Réalisateur : ' + ${film.getDirector().getGivenname()} + ', '
+                                        + ${film.getDirector().getSurname()}">
+                    Realisateur
+                </h3>
 
-                <!--<p id="photoPersonne">-->
-                    <!--<img th:src="@{'~/images/personnes/' + ${film.getRealisateur().getPhotoPath()}}" />-->
-                <!--</p>-->
+                <p id="photoPersonne">
+                    <img th:src="@{'~/images/personnes/' + ${film.getDirector().getImagePath()}}" />
+                </p>
 
             </div>
         </div>
 
     </div>
 
-    <!-- //////////// Acteurs /////////////-->
-
-    <!--<div class="actorList">-->
-        <!--<h3 th:text="'Acteurs : ' "> Acteurs </h3>-->
-
-        <!--<ul>-->
-            <!--<li th:each="role : ${film.getRoles()}">-->
-                <!--<a th:href="@{'~/acteur/' + ${role.getActeur().getNom()}}" th:text="${role.getActeur().getNom()}-->
-                        <!--+ ' ' + ${role.getActeur().getPrenom()} + ' joue ' + ${role.getAlias()}">-->
-                    <!--film-->
-                <!--</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-
-    <!--</div>-->
 
     <h3 th:text="'Acteurs : ' " style="clear:both; text-align: center;"> Acteurs </h3>
-
     <div class="container">
         <!-- Example row of columns -->
         <div class="row">
-            <!--<div class="col-md-4" th:each="role : ${film.getRoles()}">-->
-                <!--<h2 th:text="${role.getActeur().getNom()}-->
-                        <!--+ ' ' + ${role.getActeur().getPrenom()}">Nom prenom</h2>-->
+            <div class="col-md-4" th:each="role : ${film.getRoles()}">
+                <h2 th:text="${role.getActor().getGivenname()}
+                        + ' ' + ${role.getActor().getSurname()}">Nom prenom</h2>
 
-                <!--<p th:text="'Dans le role de ' + ${role.getAlias()}">Role</p>-->
-                <!--<p>-->
-                    <!--<a class="btn btn-secondary" th:href="@{'~/acteur/' + ${role.getActeur().getNom()}}"-->
-                      <!--th:text="'Voir détails'" role="button">View details &raquo;</a>-->
-                <!--</p>-->
+                <p th:text="'Dans le role de ' + ${role.getName()}">Role</p>
+                <p>
+                    <a class="btn btn-secondary" th:href="@{'~/person/' + ${role.getActor().getId()}}"
+                      th:text="'Voir détails'" role="button">View details &raquo;</a>
+                </p>
 
-            <!--</div>-->
+            </div>
         </div>
         <hr>
     </div>
 
 </main>
 
-    <footer th:replace="vues/header :: footer"> footer </footer>
+<footer th:replace="vues/header :: footer"> footer </footer>
 
 </body>
 </html>

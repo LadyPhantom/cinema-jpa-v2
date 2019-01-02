@@ -1,20 +1,54 @@
 package fr.maskerad.cinema.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "films")
 public class Film {
-
-    private long id;
-    private String titre;
-    private Double notation;
-    private String affiche;
-    private String resume;
-    private Personne realisateur;
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "films_id_seq")
+//    @SequenceGenerator(name = "films_id_seq", sequenceName = "films_id_seq", allocationSize=50)
     @Column(name = "id", nullable = false)
+//    @SequenceGenerator(sequenceName = "films_id_seq", name = "films_id_seq")
+    private long id;
+    @Basic
+    @Column(name = "title", nullable = true, length = 50)
+    private String title;
+    @Basic
+    @Column(name = "rating", nullable = true, precision = 1)
+    private BigDecimal rating;
+    @Basic
+    @Column(name = "image_path", nullable = true, length = 120)
+    private String imagePath;
+    @Basic
+    @Column(name = "summary", nullable = true, length = -1)
+    private String summary;
+    @Basic
+    @Column(name="release_date", nullable = true)
+    private LocalDate releaseDate;
+    @ManyToOne
+    @JoinColumn(name ="film_director")
+    private Personne director;
+
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Role> roles;
+
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name="film_genre", joinColumns = @JoinColumn(name="film_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<Genre> genres;
+
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews;
+
+
     public long getId() {
         return id;
     }
@@ -23,78 +57,103 @@ public class Film {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "title", nullable = true, length = 80)
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Basic
-    @Column(name = "rating", nullable = true, precision = 1)
-    public double getNotation() { return notation; }
-
-    public void setNotation(double notation) { this.notation = notation; }
-
-    @Basic
-    @Column(name = "image_path", nullable = true, length = 80)
-    public String getAffiche() {
-        return affiche;
+    public BigDecimal getRating() {
+        return rating;
     }
 
-    public void setAffiche(String affiche) {
-        this.affiche = affiche;
+    public void setRating(BigDecimal rating) {
+        this.rating = rating;
     }
 
-    @Basic
-    @Column(name = "summary", nullable = true)
-    public String getResume() { return affiche; }
-
-    public void setResume(String resume) { this.resume = resume; }
-
-    @ManyToOne
-    @JoinColumn(name ="film_director")
-    public Personne getRealisateur() {
-        return realisateur;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setRealisateur(Personne person) {
-        this.realisateur = person;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
 
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Personne getDirector() {
+        return director;
+    }
+
+    public void setDirector(Personne person) {
+        this.director = person;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Film films = (Film) o;
+        Film film = (Film) o;
 
-        if (id != films.id) return false;
-        if (titre != null ? !titre.equals(films.titre) : films.titre != null) return false;
-        if (resume != null ? !resume.equals(films.resume) : films.resume != null) return false;
-        if (affiche != null ? !affiche.equals(films.affiche) : films.affiche != null) return false;
-        if (notation != null){
-            if (notation != films.notation){
-                return false;
-            }
-        }
+        if (id != film.id) return false;
+        if (title != null ? !title.equals(film.title) : film.title != null) return false;
+        if (rating != null ? !rating.equals(film.rating) : film.rating != null) return false;
+        if (imagePath != null ? !imagePath.equals(film.imagePath) : film.imagePath != null) return false;
+        if (summary != null ? !summary.equals(film.summary) : film.summary != null) return false;
 
         return true;
     }
 
     @Override
-    public String toString() {
-        return "Film{" +
-                "titre='" + titre + '\'' +
-                ", notation=" + notation +
-                ", resume='" + resume + '\'' +
-//                ", realisateur=" + realisateur.getNom() +
-                '}';
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
+        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
+        result = 31 * result + (summary != null ? summary.hashCode() : 0);
+        return result;
     }
+
 }

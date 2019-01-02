@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" th:href="@{/css/cinema.css}"
+          href="cinema.css" />
+
+    <div th:replace="vues/header :: head"></div>
+
+</head>
+<body>
+
+<nav th:replace="vues/header :: header-nav"></nav>
+
+<div class="container">
+
+    <form action="#" th:action="@{/genre/add}" th:object="${genre}" enctype="multipart/form-data" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" th:field="*{name}" class="form-control" id="nom"/>
+        </div>
+
+        <input type="submit" value="Valider" class="btn btn-primary" />
+    </form>
+
+</div>
+
+<footer th:replace="vues/header :: footer"> footer </footer>
+
+</body>
+</html>

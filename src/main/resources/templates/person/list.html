@@ -27,16 +27,12 @@ xmlns:th="http://www.thymeleaf.org">
         <div class="container">
             <div class="row">
                 <div class="col-md-4" th:each="personne: ${personnes}">
-                    <h2 th:text="${personne.getNom()}">Heading</h2>
+                    <h2 th:text="${personne.getGivenname()}">Heading</h2>
                     <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
                     <p><a class="btn btn-secondary" th:href="${personne.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
                 </div>
             </div>
         </div>
-
-        <a href="/person/list" th:text="'liste de personnes'">link</a>
-
-        <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
 
     </main>
 

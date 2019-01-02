@@ -24,7 +24,7 @@ public class ImageController {
         ClassPathResource imgFile;
 
         imgFile = new ClassPathResource("images/affiches/"
-                + filmsDao.findById( Long.parseLong(id) ).get().getAffiche() );
+                + filmsDao.findById( Long.parseLong(id) ).get().getImagePath() );
 
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());

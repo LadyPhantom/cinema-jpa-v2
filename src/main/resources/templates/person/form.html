@@ -24,22 +24,22 @@
 
             <div class="form-group">
                 <label for="prenom" >Prénom :</label>
-                <input type="text" th:field="*{prenom}" class="form-control" id="prenom"/>
+                <input type="text" th:field="*{surname}" class="form-control" id="prenom"/>
             </div>
 
             <div class="form-group">
                 <label for="nom" >Nom :</label>
-                <input type="text" th:field="*{nom}" class="form-control" id="nom"/>
+                <input type="text" th:field="*{givenname}" class="form-control" id="nom"/>
             </div>
 
             <div class="form-group">
                 <label for="age" >Annee de naissance :</label>
-                <input type="text" th:field="*{naissance}" class="form-control" id="age"/>
+                <input type="date" th:field="*{birthday}" class="form-control" id="age"/>
             </div>
 
             <div class="form-group">
                 <label for="affiche">Photo :</label>
-                <input type="file" name="photo" class="form-control-file" id="affiche"/>
+                <input type="file" th:field="*{imagePath}" name="photo" class="form-control-file" id="affiche"/>
             </div>
 
             <input type="submit" value="Valider" class="btn btn-primary"/>

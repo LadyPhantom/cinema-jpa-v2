@@ -33,6 +33,8 @@ public class PersonneController {
         return "person/detail";
     }
 
+    // ------------------- ADD/MOD ---------------------------------
+
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id")long id, Model model){
         Personne p = personneDao.findById(id).get();

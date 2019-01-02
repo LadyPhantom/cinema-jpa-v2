@@ -1,21 +1,62 @@
 package fr.maskerad.cinema.model;
 
-import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name="play")
 public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private Long id;
+    @Basic
+    @Column(name = "rank", nullable = false)
+    private Integer rank;
+    @Basic
+    @Column(name = "name", nullable = false, length = 90)
+    private String name;
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private Personne actor;
+    @ManyToOne
+    @JoinColumn(name="film_id")
     private Film film;
-    private Personne acteur;
-    private String alias;
-    private Integer odre;
 
-    public Role(Film film, Personne acteur, String alias, Integer odre) {
-        this.film = film;
-        this.acteur = acteur;
-        this.alias = alias;
-        this.odre = odre;
+
+    public long getId() {
+        return id;
     }
 
-    public Role() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public Personne getActor() {
+        return actor;
+    }
+
+    public void setActor(Personne acteur) {
+        this.actor = acteur;
     }
 
     public Film getFilm() {
@@ -26,43 +67,21 @@ public class Role {
         this.film = film;
     }
 
-    public Personne getActeur() {
-        return acteur;
-    }
-
-    public void setActeur(Personne acteur) {
-        this.acteur = acteur;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public Integer getOdre() {
-        return odre;
-    }
-
-    public void setOdre(Integer odre) {
-        this.odre = odre;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Role)) return false;
-        Role role = (Role) o;
-        return Objects.equals(getFilm(), role.getFilm()) &&
-                Objects.equals(getActeur(), role.getActeur()) &&
-                Objects.equals(getAlias(), role.getAlias()) &&
-                Objects.equals(getOdre(), role.getOdre());
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role play = (Role) o;
+
+        if (!id.equals(play.id)) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFilm(), getActeur(), getAlias(), getOdre());
+        int result = (int) (id ^ (id >>> 32));
+        return result;
     }
 }

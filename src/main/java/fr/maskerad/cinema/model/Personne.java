@@ -1,20 +1,33 @@
 package fr.maskerad.cinema.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "persons")
 public class Personne {
-
-    private long id;
-    private String nom;
-    private String prenom;
-    private Integer naissance;
-    private String photoPath;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    private long id;
+    @Basic
+    @Column(name = "surname", nullable = false, length = 60)
+    private String surname;
+    @Basic
+    @Column(name = "givenname", nullable = true, length = 40)
+    private String givenname;
+    @Basic
+    @Column(name = "birthday", nullable = true)
+    private LocalDate birthday;
+    @Basic
+    @Column(name = "image_path", nullable = true, length = 80)
+    private String imagePath;
+    @OneToMany(mappedBy = "director")
+    private Set<Film> directedFilms;
+    @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Role> roles;
+
     public long getId() {
         return id;
     }
@@ -23,44 +36,52 @@ public class Personne {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "surname", nullable = false, length = 60)
-    public String getNom() {
-        return nom;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setNom(String surname) {
-        this.nom = surname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "givenname", nullable = true, length = 40)
-    public String getPrenom() {
-        return prenom;
+    public String getGivenname() {
+        return givenname;
     }
 
-    public void setPrenom(String givenname) {
-        this.prenom = givenname;
+    public void setGivenname(String givenname) {
+        this.givenname = givenname;
     }
 
-    @Basic
-    @Column(name = "birth_year", nullable = true)
-    public Integer getNaissance() {
-        return naissance;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setNaissance(Integer birthYear) {
-        this.naissance = birthYear;
+    public void setBirthday(LocalDate birthYear) {
+        this.birthday = birthYear;
     }
 
-    @Basic
-    @Column(name = "image_path", nullable = true, length = 80)
-    public String getPhotoPath() {
-        return photoPath;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setPhotoPath(String imagePath) {
-        this.photoPath = imagePath;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public Set<Film> getDirectedFilms() {
+        return directedFilms;
+    }
+
+    public void setDirectedFilms(Set<Film> films) {
+        this.directedFilms = films;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -71,10 +92,6 @@ public class Personne {
         Personne persons = (Personne) o;
 
         if (id != persons.id) return false;
-        if (nom != null ? !nom.equals(persons.nom) : persons.nom != null) return false;
-        if (prenom != null ? !prenom.equals(persons.prenom) : persons.prenom != null) return false;
-        if (naissance != null ? !naissance.equals(persons.naissance) : persons.naissance != null) return false;
-        if (photoPath != null ? !photoPath.equals(persons.photoPath) : persons.photoPath != null) return false;
 
         return true;
     }
@@ -82,21 +99,17 @@ public class Personne {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (nom != null ? nom.hashCode() : 0);
-        result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
-        result = 31 * result + (naissance != null ? naissance.hashCode() : 0);
-        result = 31 * result + (photoPath != null ? photoPath.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Personne{" +
+        return "Person{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", naissance=" + naissance +
-                ", photoPath='" + photoPath + '\'' +
+                ", nom='" + surname + '\'' +
+                ", prenom='" + givenname + '\'' +
+                ", naissance=" + birthday +
+                ", photoPath='" + imagePath + '\'' +
                 '}';
     }
 }

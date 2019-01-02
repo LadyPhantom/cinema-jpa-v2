@@ -23,12 +23,6 @@ public class FilmController {
     @Autowired
     ImageManager imm;
 
-//    @GetMapping("/")
-//    public String main(Model model){
-//        model.addAttribute("films", filmsDao.getAll());
-//        return "index";
-//    }
-
     @GetMapping("/list")
     public String list(Model model){
         Iterable<Film> films = filmsDao.findAll();
@@ -43,8 +37,13 @@ public class FilmController {
         return "film/detail";
     }
 
-
     // ------------------- ADD/MOD ---------------------------------
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id){
+        filmsDao.deleteById(id);
+        return "redirect:/film/list";
+    }
 
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id")long id, Model model){
@@ -71,10 +70,4 @@ public class FilmController {
 
         return "redirect:/film/list";
     }
-
-//    @PostConstruct
-//    public void init(){
-//        roleDao = new RoleDao(personnesDao.personnes(), filmsDao.films());
-//    }
-
 }

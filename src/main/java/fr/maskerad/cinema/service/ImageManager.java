@@ -17,12 +17,12 @@ public class ImageManager {
     String path;
 
     public int savePhoto(Personne p, InputStream fi){
-        p.setPhotoPath(save("p", "personnes", fi));
+        p.setImagePath(save("p", "personnes", fi));
         return 0;
     }
 
     public int savePoster(Film f, InputStream fi) {
-        f.setAffiche(save("f","affiches", fi));
+        f.setImagePath(save("f","affiches", fi));
         return 0;
     }
 
