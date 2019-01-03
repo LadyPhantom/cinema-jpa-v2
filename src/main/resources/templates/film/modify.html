@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" th:href="@{/css/cinema.css}"
+          href="cinema.css" />
+
+    <div th:replace="vues/header :: head"></div>
+
+</head>
+<body>
+
+<nav th:replace="vues/header :: header-nav"></nav>
+
+<div class="container">
+
+    <form action="#" th:action="@{/film/add}" th:object="${film}" enctype="multipart/form-data" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{imagePath}"/>
+
+        <div class="form-group">
+            <label for="titre">Titre :</label>
+            <input type="text" th:field="*{title}" class="form-control" id="titre"/>
+        </div>
+
+        <div class="form-group">
+            <label for="affiche">Affiche :</label>
+            <input type="file" name="poster" class="form-control-file" id="affiche"/>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Résumé :</label>
+            <input type="text" th:field="*{summary}" class="form-control-file" id="summary"/>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control" th:field="${film.director}">
+                <option value="0">Sélectionner individu</option>
+                <option th:each="personne : ${personnes}"
+                        th:value="${personne.id}"
+                        th:text="${personne.givenname + ' ' + personne.surname}"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Valider" class="btn btn-primary" />
+    </form>
+
+</div>
+
+<footer th:replace="vues/header :: footer"> footer </footer>
+
+</body>
+</html>

@@ -31,15 +31,22 @@
                 <p th:text="${film.getSummary()}">Resume</p>
                 <h2>Note: <span th:text="${film.getRating()}">Note</span></h2>
 
-                 <!--//////////// Réalisateur /////////////-->
-                <h3 th:text="'Réalisateur : ' + ${film.getDirector().getGivenname()} + ', '
-                                        + ${film.getDirector().getSurname()}">
-                    Realisateur
-                </h3>
+                <br/>
 
-                <p id="photoPersonne">
-                    <img th:src="@{'~/images/personnes/' + ${film.getDirector().getImagePath()}}" />
-                </p>
+                <p><a class="btn btn-secondary" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>
+                <p><a class="btn btn-secondary" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>
+
+                 <!--//////////// Réalisateur /////////////-->
+                <div th:if="${film.getDirector() != null}">
+                    <h3 th:text="'Réalisateur : ' + ${film.getDirector().getGivenname()} + ', '
+                                        + ${film.getDirector().getSurname()}">
+                        Realisateur
+                    </h3>
+
+                    <p id="photoPersonne">
+                        <img th:src="@{'~/images/personnes/' + ${film.getDirector().getImagePath()} }" />
+                    </p>
+                </div>
 
             </div>
         </div>

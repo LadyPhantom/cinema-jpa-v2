@@ -31,7 +31,8 @@
                 <h2 th:text="${film.title}">Heading</h2>
                 <img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >
                 <p><a class="btn btn-secondary" th:href="${film.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
-                <p><a class="btn btn-secondary" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>
+                <!--<p><a class="btn btn-secondary" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>-->
+                <!--<p><a class="btn btn-secondary" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>-->
             </div>
         </div>
     </div>

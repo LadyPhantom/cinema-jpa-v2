@@ -1,6 +1,7 @@
 package fr.maskerad.cinema.web;
 
 import fr.maskerad.cinema.dao.FilmsDao;
+import fr.maskerad.cinema.dao.PersonneDao;
 import fr.maskerad.cinema.model.Film;
 import fr.maskerad.cinema.model.Personne;
 import fr.maskerad.cinema.service.ImageManager;
@@ -19,6 +20,9 @@ public class FilmController {
 
     @Autowired
     FilmsDao filmsDao;
+
+    @Autowired
+    PersonneDao personneDao;
 
     @Autowired
     ImageManager imm;
@@ -47,9 +51,20 @@ public class FilmController {
 
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id")long id, Model model){
+
+        Iterable<Personne> personnes = personneDao.findAll();
+
         model.addAttribute("film", filmsDao.findById(id).get());
-        return "film/form";
+        model.addAttribute("personnes", personnes );
+        
+        return "film/modify";
     }
+//
+//    @GetMapping("/mod/{id}")
+//    public String mod(@PathVariable("id")long id, Model model){
+//        model.addAttribute("film", filmsDao.findById(id).get());
+//        return "film/form";
+//    }
 
     @GetMapping("/add")
     public String add(Model model){
