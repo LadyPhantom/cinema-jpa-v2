@@ -1,5 +1,7 @@
 package fr.maskerad.cinema.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -9,6 +11,8 @@ import java.util.Set;
 public class Personne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "persons_id_seq")
+//    @SequenceGenerator(name = "persons_id_seq")
     @Column(name = "id", nullable = false)
     private long id;
     @Basic
@@ -19,6 +23,7 @@ public class Personne {
     private String givenname;
     @Basic
     @Column(name = "birthday", nullable = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     @Basic
     @Column(name = "image_path", nullable = true, length = 80)

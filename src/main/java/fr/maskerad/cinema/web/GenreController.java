@@ -2,14 +2,10 @@ package fr.maskerad.cinema.web;
 
 import fr.maskerad.cinema.dao.GenreDao;
 import fr.maskerad.cinema.model.Genre;
-import fr.maskerad.cinema.model.Personne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/genre")
@@ -29,7 +25,7 @@ public class GenreController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id){
         genreDao.deleteById(id);
-        return "redirect:/film/list";
+        return "redirect:/genre/list";
     }
 
     @GetMapping("/mod/{id}")
@@ -37,7 +33,7 @@ public class GenreController {
         Genre g = genreDao.findById(id).get();
         System.out.println(g);
         model.addAttribute("genre", g);
-        return "person/form";
+        return "genre/form";
     }
 
     @GetMapping("/add")

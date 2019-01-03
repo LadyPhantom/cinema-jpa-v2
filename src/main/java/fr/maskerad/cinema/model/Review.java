@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_id_seq")
     @Column(name = "id", nullable = false)
     private long id;
     @Basic

@@ -1,43 +1,43 @@
-package fr.maskerad.cinema.model;
-
-/**
- * Modele de données en mémoire pour l'application cinéma
- *
- * Travail à faire : ajouter les rôles des acteurs dans les films sachant que, par ordre d'affiche :
- *    dans Le juge et l'assassin
- *      Noiret joue Le juge Rousseau
- *      Galabru joue Joseph Bouvier
- *      Huppert joue Rose
- *    dans La guerre des étoiles
- *      Hamill joue Luke Skywalker
- *      Ford joue Han Solo
- *      Fisher joue Princesse Leia Organa
- *    dans Pretty Woman
- *      Gere joue Edward Lewis
- *      Roberts joue Vivian Ward
- *      Bellamy joue James
- *    dans Légendes d'automne
- *      Hopkins joue Colonel William Ludlow
- *      Pitt joue Tristan Ludlow
- *      Quinn joue Alfred Ludlow
- *      Thomas joue Samuel Ludlow
- *    dans ET
- *      Thomas joue Eliott
- *      Barrymore joue Gertie
- *      Wallace Stone joue Mary
- *    dans Ben Hur
- *      Heston joue Judas Ben-Hur
- *      Boyd joue Messala
- *      Hawkins joue Quintus Arrius
- */
-
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@Component
-public class DataModel {
+//package fr.maskerad.cinema.model;
+//
+///**
+// * Modele de données en mémoire pour l'application cinéma
+// *
+// * Travail à faire : ajouter les rôles des acteurs dans les films sachant que, par ordre d'affiche :
+// *    dans Le juge et l'assassin
+// *      Noiret joue Le juge Rousseau
+// *      Galabru joue Joseph Bouvier
+// *      Huppert joue Rose
+// *    dans La guerre des étoiles
+// *      Hamill joue Luke Skywalker
+// *      Ford joue Han Solo
+// *      Fisher joue Princesse Leia Organa
+// *    dans Pretty Woman
+// *      Gere joue Edward Lewis
+// *      Roberts joue Vivian Ward
+// *      Bellamy joue James
+// *    dans Légendes d'automne
+// *      Hopkins joue Colonel William Ludlow
+// *      Pitt joue Tristan Ludlow
+// *      Quinn joue Alfred Ludlow
+// *      Thomas joue Samuel Ludlow
+// *    dans ET
+// *      Thomas joue Eliott
+// *      Barrymore joue Gertie
+// *      Wallace Stone joue Mary
+// *    dans Ben Hur
+// *      Heston joue Judas Ben-Hur
+// *      Boyd joue Messala
+// *      Hawkins joue Quintus Arrius
+// */
+//
+//import org.springframework.stereotype.Component;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//@Component
+//public class DataModel {
 
 //    private List<Personne> personnes = new ArrayList<>();
 //    private List<Film> films = new ArrayList<>();
@@ -211,4 +211,4 @@ public class DataModel {
 //    public List<Film> getFilms() {
 //        return films;
 //    }
-}
+//}

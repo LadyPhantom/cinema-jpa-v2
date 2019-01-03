@@ -3,18 +3,15 @@ package fr.maskerad.cinema.dao;
 import fr.maskerad.cinema.model.Film;
 import fr.maskerad.cinema.model.Personne;
 import fr.maskerad.cinema.model.Role;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fred on 03/02/2016.
- */
-
-@Component
-public class RoleDao {
-
+@Repository
+public interface RoleDao extends CrudRepository<Role, Long> {
 //    public RoleDao(List<Personne> personnes, List<Film> films){
 //        Role r;
 //
@@ -76,7 +73,5 @@ public class RoleDao {
 //        films.get(5).addRole(r);
 //        personnes.get(17).addRole(r);
 //    }
-
-    public RoleDao(){}
-
+//    public RoleDao(){}
 }

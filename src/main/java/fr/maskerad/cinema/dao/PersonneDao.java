@@ -3,14 +3,10 @@ package fr.maskerad.cinema.dao;
 import fr.maskerad.cinema.model.Personne;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-/**
- * Created by fred on 03/02/2016.
- */
-
-@Component
+@Repository
 public interface PersonneDao extends CrudRepository<Personne, Long> {
-
 //    @Autowired
 //    private EntityManager entityManager;
 //
@@ -34,5 +30,4 @@ public interface PersonneDao extends CrudRepository<Personne, Long> {
 //        }
 //        return retVal;
 //    }
-
 }

@@ -5,16 +5,13 @@ import fr.maskerad.cinema.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- * Created by fred on 03/02/2016.
- */
-
-@Component
+@Repository
 public interface FilmsDao extends CrudRepository<Film, Long> {
 //
 //    @Autowired
@@ -40,10 +37,6 @@ public interface FilmsDao extends CrudRepository<Film, Long> {
 //        }
 //        return retVal;
 //    }
-
 //    @Query(value = "", nativeQuery = true)
 //    void save();
-
-
-
 }

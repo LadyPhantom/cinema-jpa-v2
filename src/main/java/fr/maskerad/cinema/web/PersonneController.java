@@ -35,6 +35,12 @@ public class PersonneController {
 
     // ------------------- ADD/MOD ---------------------------------
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id){
+        personneDao.deleteById(id);
+        return "redirect:/person/list";
+    }
+
     @GetMapping("/mod/{id}")
     public String mod(@PathVariable("id")long id, Model model){
         Personne p = personneDao.findById(id).get();

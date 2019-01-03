@@ -10,10 +10,7 @@ import java.util.Set;
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "films_id_seq")
-//    @SequenceGenerator(name = "films_id_seq", sequenceName = "films_id_seq", allocationSize=50)
     @Column(name = "id", nullable = false)
-//    @SequenceGenerator(sequenceName = "films_id_seq", name = "films_id_seq")
     private long id;
     @Basic
     @Column(name = "title", nullable = true, length = 50)

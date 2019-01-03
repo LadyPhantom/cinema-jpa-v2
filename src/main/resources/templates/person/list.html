@@ -30,6 +30,7 @@ xmlns:th="http://www.thymeleaf.org">
                     <h2 th:text="${personne.getGivenname()}">Heading</h2>
                     <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
                     <p><a class="btn btn-secondary" th:href="${personne.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
+                    <p><a class="btn btn-secondary" th:href="${'delete/' + personne.id}" th:text="'Supprimer'" role="button">Delete</a></p>
                 </div>
             </div>
         </div>

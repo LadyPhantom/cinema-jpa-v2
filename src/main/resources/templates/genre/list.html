@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--déclaration d'un espace de nomage appelé th, correspondant à une balise thymeleaf-->
 <head>
     <meta charset="UTF-8">
     <title>Genres</title>
@@ -29,8 +28,7 @@
         <div class="row">
             <div class="col-md-4" th:each="genre : ${genres}">
                 <h2 th:text="${genre.name}">Heading</h2>
-                <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
-                <!--<p><a class="btn btn-secondary" th:href="${film.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>-->
+                <p><a class="btn btn-secondary" th:href="${'delete/' + genre.id}" th:text="'Supprimer'" role="button">Delete</a></p>
             </div>
         </div>
     </div>

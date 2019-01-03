@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "play_id_seq")
     @NotNull
     private Long id;
     @Basic
