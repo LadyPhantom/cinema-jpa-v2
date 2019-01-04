@@ -3,7 +3,7 @@
 xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des personnes</title>
+    <title>Liste des users</title>
 
     <link rel="stylesheet" th:href="@{/css/cinema.css}"
           href="cinema.css" />
@@ -19,17 +19,17 @@ xmlns:th="http://www.thymeleaf.org">
 
         <div class="jumbotron">
             <div class="container">
-                <h1 class="display-3">Liste des personnes</h1>
+                <h1 class="display-3">Liste des users</h1>
             </div>
 
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4" th:each="personne: ${personnes}">
-                    <h2 th:text="${personne.getGivenname()}">Heading</h2>
+                <div class="col-md-4" th:each="user : ${users}">
+                    <h2 th:text="${user.surname + ' ' + user.givenname}">Heading</h2>
                     <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
-                    <p><a class="btn btn-secondary" th:href="${personne.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
+                    <p><a class="btn btn-secondary" th:href="${user.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
                 </div>
             </div>
         </div>

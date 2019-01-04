@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.surname + ' ' + user.givenname }">
+        Detail
+    </title>
+    <link rel="stylesheet" th:href="@{/css/cinema.css}" href="cinema.css" />
+
+    <div th:replace="vues/header :: head"></div>
+</head>
+<body>
+
+<nav th:replace="vues/header :: header-nav"></nav>
+
+<main role="main">
+    <div class="jumbotron">
+        <div class="container">
+
+            <h1 th:text="${user.surname + ' ' + user.givenname }" class="display-3"></h1>
+            <p th:text="'Né(e) en : ' + ${user.login}">log</p>
+            <p th:text="'Né(e) en : ' + ${user.password}">psw</p>
+
+            <p>
+                <a th:href="${'delete/' + user.id}" th:text="'Supprimer'" role="button" class="btn btn-secondary">Delete</a>
+            </p>
+
+        </div>
+    </div>
+
+    <h3 th:text="'Liste des reviews :' " style="text-align: center;">Acteurs</h3>
+    <div class="container">
+        <div class="row">
+            <div th:each="review : ${user.getReviews()}" class="col-md-4">
+                <h2 th:text="${review.date} + ', dans ' + ${review.getFilm().getTitle()}">role</h2>
+                <p th:text="${review.article}">review</p>
+                <!--<p><a class="btn btn-secondary" th:href="@{'~/film/' + ${role.getFilm().getId()}}" th:text="'Voir détails film.'" role="button">View details &raquo;</a></p>-->
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="vues/header :: footer"> footer </footer>
+</body>
+</html>

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 @Entity
+@Table(name="review")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

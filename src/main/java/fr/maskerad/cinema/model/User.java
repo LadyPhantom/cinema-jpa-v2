@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="\"User\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     @Column(name = "id", nullable = false)
     private long id;
     @Basic
