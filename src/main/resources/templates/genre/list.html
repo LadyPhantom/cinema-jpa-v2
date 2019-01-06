@@ -13,6 +13,7 @@
 <body>
 
 <nav th:replace="vues/header :: header-nav"></nav>
+<!--
 
 <main role="main">
 
@@ -29,13 +30,41 @@
             <div class="col-md-4" th:each="genre : ${genres}">
                 <h2 th:text="${genre.name}">Heading</h2>
                 <p><a class="btn btn-secondary" th:href="${'delete/' + genre.id}" th:text="'Supprimer'" role="button">Delete</a></p>
+
+-->
+
+<nav th:replace="vues/header :: header-nav"></nav>
+
+
+<div class="ui container ">
+
+    <h1>Films du cinéma</h1>
+    <p>Liste des films.</p>
+
+    <div class="ui link cards center aligned grid">
+
+        <a class="card" th:each="film : ${films}" th:href="${film.id}" >
+
+            <div class="ui image">
+                <img th:src="@{ '~/images/affiches/'+ ${film.id} }">
             </div>
-        </div>
+
+            <div class="content">
+                <div class="header" th:text="${film.title}" >Titre</div>
+                <!--<div class="meta">
+                    <a>Friends</a>
+                </div>
+                pratique pour afficher les genres du film
+                -->
+            </div>
+        </a>
+
     </div>
 
-</main>
+</div>
 
-<footer th:replace="vues/header :: footer"> footer </footer>
+<footer th:replace="vues/footer :: footer"> footer </footer>
+
 
 </body>
 </html>

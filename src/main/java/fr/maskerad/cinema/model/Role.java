@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "play_id_seq")
     @NotNull
     private Long id;
     @Basic
@@ -28,34 +27,27 @@ public class Role {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
 
-
     public int getRank() {
         return rank;
     }
-
     public void setRank(int rank) {
         this.rank = rank;
     }
 
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-
     public Personne getActor() {
         return actor;
     }
-
     public void setActor(Personne acteur) {
         this.actor = acteur;
     }
@@ -63,7 +55,6 @@ public class Role {
     public Film getFilm() {
         return film;
     }
-
     public void setFilm(Film film) {
         this.film = film;
     }
@@ -79,7 +70,6 @@ public class Role {
 
         return true;
     }
-
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));

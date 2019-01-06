@@ -15,35 +15,35 @@
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
-<main role="main">
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Films du cinéma</h1>
-            <p>Liste des films.</p>
-        </div>
+<div class="ui container ">
 
-    </div>
+    <h1>Films du cinéma</h1>
+    <p>Liste des films.</p>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4" th:each="film : ${films}">
-                <h2 th:text="${film.title}">Heading</h2>
-                <img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >
-                <p><a class="btn btn-secondary" th:href="${film.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
-                <!--<p><a class="btn btn-secondary" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>-->
-                <!--<p><a class="btn btn-secondary" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>-->
+    <div class="ui link cards center aligned grid">
+
+        <a class="card" th:each="film : ${films}" th:href="${film.id}" >
+            <!-- Mettre le a dans un div pr éviter d'avoir les films ds lke désordre? -->
+            <div class="ui image">
+                <img th:src="@{ '~/images/affiches/'+ ${film.id} }">
             </div>
-        </div>
+
+            <div class="content">
+                <div class="header" th:text="${film.title}" >Titre</div>
+                <!--<div class="meta">
+                    <a>Friends</a>
+                </div>
+                pratique pour afficher les genres du film
+                -->
+            </div>
+        </a>
+
     </div>
 
-    <a href="/person/list" th:text="'liste de personnes'">link</a>
+</div>
 
-    <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
-
-</main>
-
-<footer th:replace="vues/header :: footer"> footer </footer>
+<footer th:replace="vues/footer :: footer"> footer </footer>
 
 </body>
 </html>

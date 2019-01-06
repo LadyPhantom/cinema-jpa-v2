@@ -5,50 +5,39 @@
     <meta charset="UTF-8">
     <title> Accueil </title>
 
-    <link rel="stylesheet" th:href="@{/css/cinema.css}"
-          href="cinema.css" />
-
     <div th:replace="vues/header :: head"></div>
+
+    <link rel="stylesheet" type="text/css" href="/webjars/Semantic-UI/2.4.1/semantic.css">
 
 </head>
 <body>
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
-<main role="main">
+<div class="ui container">
+    <h1>Accueil du cinéma</h1>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Accueil du cinéma</h1>
+    <h2 class="ui dividing header">Persons</h2>
+    <a href="/person/list" th:text="'liste de personnes'">link</a>
+    <br/>
+    <a href="/person/add" th:text="'formulaire création de personnes'">link</a>
+    <h2 class="ui dividing header">Films</h2>
+    <a href="/film/list" th:text="'liste de films'">link</a>
+    <br/>
+    <a href="/film/add" th:text="'formulaire création de film'">link</a>
 
-            <a href="/person/list" th:text="'liste de personnes'">link</a><br/>
+    <h2 class="ui dividing header">Genres</h2>
+    <a href="/genre/list" th:text="'liste de genres'">link</a>
+    <br/>
+    <a href="/genre/add" th:text="'formulaire création de genres'">link</a>
 
-            <a href="/person/add" th:text="'formulaire création de personnes'">link</a><br/>
+    <h2 class="ui dividing header">Users</h2>
+    <a href="/user/list" th:text="'liste des users'">link</a>
+    <br/>
+    <a href="/user/add" th:text="'form users'">link</a>
+</div>
 
-            <br/>
-
-            <a href="/film/list" th:text="'liste de films'">link</a><br/>
-
-            <a href="/film/add" th:text="'formulaire création de film'">link</a><br/>
-
-            <br/>
-
-            <a href="/genre/list" th:text="'liste de genres'">link</a><br/>
-
-            <a href="/genre/add" th:text="'formulaire création de genres'">link</a><br/>
-
-            <br/>
-
-            <a href="/user/list" th:text="'liste des users'">link</a><br/>
-            <a href="/user/add" th:text="'form users'">link</a><br/>
-
-        </div>
-
-    </div>
-
-</main>
-
-<footer th:replace="vues/header :: footer"> footer </footer>
+<footer th:replace="vues/footer :: footer"> footer </footer>
 
 </body>
 </html>
