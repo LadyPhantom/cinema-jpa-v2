@@ -14,68 +14,71 @@
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
-<main role="main">
+<div class="ui main container ">
 
-    <div class="jumbotron">
+    <div class="ui inverted segment">
+        <div class="ui grid">
 
-        <div class="container">
-
-            <!-- //////////// Affiche /////////////-->
-            <div class="moviePoster" >
-                <img th:src="@{'~/images/affiches/'+ ${film.getId()} }" />
+            <!-- //////////////////////////////////// Film ////////////////////////////////////// -->
+            <div class="five wide column">
+                <!-- //////////// Affiche ///////////// -->
+                <img class="ui centered image medium" th:src="@{'~/images/affiches/'+ ${film.id} }" />
             </div>
 
-            <!-- //////////// Détails film /////////////-->
-            <div class="movieDescription" >
-                <h1 th:text="${film.getTitle()}">Titre</h1>
+            <div class="eleven wide column">
+
+                <!-- //////////// Details ///////////// -->
+                <h1 th:text="${film.title}" >Titre</h1>
+                <div class="ui divider" ></div>
+
                 <p th:text="${film.getSummary()}">Resume</p>
                 <h2>Note: <span th:text="${film.getRating()}">Note</span></h2>
 
-                <br/>
+                <p><a class="ui button" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>
+                <p><a class="ui button" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>
 
-                <p><a class="btn btn-secondary" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>
-                <p><a class="btn btn-secondary" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>
 
-                 <!--//////////// Réalisateur /////////////-->
-                <div th:if="${film.getDirector() != null}">
-                    <h3 th:text="'Réalisateur : ' + ${film.getDirector().getGivenname()} + ', '
-                                        + ${film.getDirector().getSurname()}">
-                        Realisateur
-                    </h3>
+                <!--////////////////////////////////// Réalisateur /////////////////////////////////// -->
+                <div class="ui grid">
 
-                    <p id="photoPersonne">
-                        <img th:src="@{'~/images/personnes/' + ${film.getDirector().getImagePath()} }" />
-                    </p>
+                    <div class="three wide column"  th:if="${film.getDirector() != null}" >
+                        <img class="ui centered image tiny" th:src="@{'~/images/personnes/' + ${film.getDirector().getImagePath()} }" />
+                    </div>
+
+                    <div class="thirteen wide column" th:if="${film.getDirector() != null}" >
+                        <h3 th:text="'Réalisateur'">Realisateur</h3>
+                        <div class="ui divider" ></div>
+                        <p th:text="${film.getDirector().getGivenname()} + ', ' + ${film.getDirector().getSurname()}">nom</p>
+                    </div>
                 </div>
 
             </div>
-        </div>
 
-    </div>
+            <!--////////////////////////////////// Acteur(s) /////////////////////////////////// -->
+            <div class="sixteen wide column">
 
+                <div class="ui grid">
+                    <div class="four wide column" th:each="role : ${film.getRoles()}">
 
-    <h3 th:text="'Acteurs : ' " style="clear:both; text-align: center;"> Acteurs </h3>
-    <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4" th:each="role : ${film.getRoles()}">
-                <h2 th:text="${role.getActor().getGivenname()}
-                        + ' ' + ${role.getActor().getSurname()}">Nom prenom</h2>
+                        <h2 th:text="${role.getActor().getGivenname()} + ' ' + ${role.getActor().getSurname()}">Nom prenom</h2>
 
-                <p th:text="'Dans le role de ' + ${role.getName()}">Role</p>
-                <p>
-                    <a class="btn btn-secondary" th:href="@{'~/person/' + ${role.getActor().getId()}}"
-                      th:text="'Voir détails'" role="button">View details &raquo;</a>
-                </p>
+                        <p th:text="'Dans le role de ' + ${role.getName()}">Role</p>
+
+                        <a class="ui button" th:href="@{'~/person/' + ${role.getActor().getId()}}"
+                               th:text="'Voir détails'" role="button">View details &raquo;</a>
+
+                    </div>
+                </div>
 
             </div>
+
         </div>
-        <hr>
     </div>
 
-</main>
 
-<footer th:replace="vues/header :: footer"> footer </footer>
+</div>
+
+<footer th:replace="vues/footer :: footer"> footer </footer>
 
 </body>
 </html>

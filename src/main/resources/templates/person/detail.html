@@ -13,34 +13,52 @@
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
-<main role="main">
-    <div class="jumbotron">
-        <div class="container">
+<div class="ui main container">
+    <div class="ui segment">
+        <div class="ui grid">
 
-            <h1 th:text="${personne.getGivenname() + ' ' + personne.getSurname()}" class="display-3"></h1>
-            <p th:text="'Né(e) en : ' + ${personne.getBirthday()}">date naissance</p>
-
-            <p id="photoPersonne" >
-                <img th:src="@{ '~/images/personnes/' + ${personne.getImagePath()} }">
-            </p>
-
-            <p>
-                <a th:href="${'delete/' + personne.id}" th:text="'Supprimer'" role="button" class="btn btn-secondary">Delete</a>
-            </p>
-
-        </div>
-    </div>
-
-    <h3 th:text="'Liste des roles joué par l\'acteur : ' " style="text-align: center;">Acteurs</h3>
-    <div class="container">
-        <div class="row">
-            <div th:each="role : ${personne.getRoles()}" class="col-md-4">
-                <h2 th:text="${role.getName()} + ' dans ' + ${role.getFilm().getTitle()}">role</h2>
-                <p><a class="btn btn-secondary" th:href="@{'~/film/' + ${role.getFilm().getId()}}" th:text="'Voir détails film.'" role="button">View details &raquo;</a></p>
+            <!-- //////////////////////////////////// Film ////////////////////////////////////// -->
+            <div class="five wide column">
+                <!-- //////////// Portrait ///////////// -->
+                <img class="ui centered image small" th:src="@{'~/images/personnes/'+ ${personne.imagePath}  }" />
             </div>
+
+            <div class="eleven wide column">
+
+                <!-- //////////// Details ///////////// -->
+                <h1 th:text="${personne.getGivenname() + ' ' + personne.getSurname()}" >nom</h1>
+                <div class="ui divider" ></div>
+
+                <p th:text="'Né(e) en : ' + ${personne.getBirthday()}">date naissance</p>
+
+                <!--<p><a class="ui button" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>-->
+                <p><a class="ui blue button" th:href="${'delete/' + personne.id}" th:text="'Supprimer'" role="button">Delete</a></p>
+
+            </div>
+
+            <!--////////////////////////////////// Role(s) /////////////////////////////////// -->
+            <div class="sixteen wide column">
+                <h3 th:text="'Liste des roles joué par l\'acteur : ' "></h3>
+                <div class="ui divider" ></div>
+
+                <div class="ui grid">
+                    <div class="four wide column" th:each="role : ${personne.roles}">
+
+                        <h2 th:text="${role.getName()} + ' dans ' + ${role.getFilm().getTitle()}">Role</h2>
+
+                        <a class="ui button" th:href="@{'~/film/' + ${role.getFilm().getId()}}"
+                           th:text="'Détails film'" role="button">View details &raquo;</a>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
-</main>
-<footer th:replace="vues/header :: footer"> footer </footer>
+</div>
+
+<footer th:replace="vues/footer :: footer"> footer </footer>
+
 </body>
 </html>

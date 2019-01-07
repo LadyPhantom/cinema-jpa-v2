@@ -15,28 +15,29 @@ xmlns:th="http://www.thymeleaf.org">
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
-    <main role="main">
+<div class="ui container">
 
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-3">Liste des personnes</h1>
+    <h1>Personnes</h1>
+    <p>Liste des personnes.</p>
+
+    <div class="ui link six cards center aligned grid">
+
+        <a class="card" th:each="personne: ${personnes}" th:href="${personne.id}" >
+
+            <div class="ui image">
+                <img th:src="@{ '~/images/personnes/'+ ${personne.imagePath} }">
             </div>
 
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4" th:each="personne: ${personnes}">
-                    <h2 th:text="${personne.getGivenname()}">Heading</h2>
-                    <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
-                    <p><a class="btn btn-secondary" th:href="${personne.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
-                </div>
+            <div class="content">
+                <div class="header" th:text="${personne.givenname + ' ' + personne.surname}" >nom</div>
             </div>
-        </div>
+        </a>
 
-    </main>
+    </div>
 
-    <footer th:replace="vues/header :: footer"> footer </footer>
+</div>
+
+<footer th:replace="vues/footer :: footer"> footer </footer>
 
 </body>
 </html>

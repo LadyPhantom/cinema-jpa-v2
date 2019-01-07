@@ -15,6 +15,7 @@ xmlns:th="http://www.thymeleaf.org">
 
 <nav th:replace="vues/header :: header-nav"></nav>
 
+<!--
     <main role="main">
 
         <div class="jumbotron">
@@ -28,15 +29,32 @@ xmlns:th="http://www.thymeleaf.org">
             <div class="row">
                 <div class="col-md-4" th:each="user : ${users}">
                     <h2 th:text="${user.surname + ' ' + user.givenname}">Heading</h2>
-                    <!--<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >-->
+                    &lt;!&ndash;<img th:src="@{ '~/images/affiches/'+ ${film.id} }" class="img_mini_affiche" >&ndash;&gt;
                     <p><a class="btn btn-secondary" th:href="${user.id}" th:text="'Voir détails'" role="button">View details &raquo;</a></p>
                 </div>
             </div>
         </div>
 
-    </main>
+    </main>-->
 
-    <footer th:replace="vues/header :: footer"> footer </footer>
+<div class="ui container ">
+
+    <h1>Users</h1>
+    <p>Liste des user.</p>
+
+    <div class="ui grid">
+        <div class="four wide column" th:each="user : ${users}">
+
+            <h2 th:text="${user.surname + ' ' + user.givenname}">genre</h2>
+
+            <a class="ui button" th:href="${'delete/' + user.id}" th:text="'Supprimer'" role="button">Delete</a>
+
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="vues/footer :: footer"> footer </footer>
 
 </body>
 </html>
