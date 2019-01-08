@@ -10,6 +10,8 @@
 
     <div th:replace="vues/header :: head"></div>
 
+    <div th:replace="vues/header :: stars"></div>
+
 </head>
 <body>
 
@@ -31,6 +33,7 @@
 
             <div class="content">
                 <div class="header" th:text="${film.title}" >Titre</div>
+                <div class="stars-rating"></div>
                 <!--<div class="meta">
                     <a>Friends</a>
                 </div>
