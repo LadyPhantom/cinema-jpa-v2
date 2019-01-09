@@ -8,6 +8,8 @@
           href="cinema.css" />
 
     <div th:replace="vues/header :: head"></div>
+    <!--<div th:replace="vues/header :: stars"></div>-->
+    <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.6.1/css/all.css">
 
 </head>
 <body>
@@ -32,7 +34,11 @@
                 <div class="ui divider" ></div>
 
                 <p th:text="${film.getSummary()}">Resume</p>
+
                 <h2>Note: <span th:text="${film.getRating()}">Note</span></h2>
+                <div class="stars-rating" >
+                    &#61445; &#61445; &#61445; &#61445; &#61445;
+                </div>
 
                 <p><a class="ui button" th:href="${'mod/' + film.id}" th:text="'Modifier'" role="button">Modifier</a></p>
                 <p><a class="ui button" th:href="${'delete/' + film.id}" th:text="'Supprimer'" role="button">Delete</a></p>
@@ -79,6 +85,8 @@
 </div>
 
 <footer th:replace="vues/footer :: footer"> footer </footer>
+
+<!--<div th:replace="vues/footer :: font-awesome-css"></div>-->
 
 </body>
 </html>

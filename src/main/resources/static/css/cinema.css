@@ -1,33 +1,49 @@
-.moviePoster{
-    float:left;
-    padding: 5px;
-    width: 25%;
+/*.moviePoster{*/
+    /*float:left;*/
+    /*padding: 5px;*/
+    /*width: 25%;*/
+/*}*/
+
+/*.moviePoster img{*/
+    /*width: 100%*/
+/*}*/
+
+/*.movieDescription{*/
+    /*padding: 5px;*/
+    /*float: left;*/
+    /*text-align: justify;*/
+    /*max-width: 75%;*/
+    /*width: auto;*/
+/*}*/
+
+/*.actorList{*/
+    /*clear:both;*/
+    /*margin: auto;*/
+/*}*/
+
+/*.img_mini_affiche{*/
+    /*max-width: 75px;*/
+    /*height: auto;*/
+/*}*/
+
+/*#photoPersonne img{*/
+    /*max-height: 150px ;*/
+/*}*/
+
+/*body { padding-top: 70px; }*/
+
+.stars-rating{
+    font-family: "Font Awesome 5 Free";
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 }
 
-.moviePoster img{
-    width: 100%
+.stars-rating::before{
+    /*content: "&#61445; &#61445; &#61445; ";*/
+    /*content: "\f005 \f005 \f005 \f005 \f005";*/
+    color: #f8ce0b;
 }
-
-.movieDescription{
-    padding: 5px;
-    float: left;
-    text-align: justify;
-    max-width: 75%;
-    width: auto;
-}
-
-.actorList{
-    clear:both;
-    margin: auto;
-}
-
-.img_mini_affiche{
-    max-width: 75px;
-    height: auto;
-}
-
-#photoPersonne img{
-    max-height: 150px ;
-}
-
-body { padding-top: 70px; }

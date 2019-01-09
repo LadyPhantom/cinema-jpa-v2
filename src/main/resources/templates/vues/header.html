@@ -13,7 +13,25 @@
 
     <div th:fragment="stars">
 
-        <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.6.1/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.6.1/css/all.css">
+
+        <style>
+            .stars-rating{
+                font-family: FontAwesome;
+                /*position: absolute;*/
+                /*top: 0;*/
+                /*left: 0;*/
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .stars-rating::before {
+                /*content: "\f005 \f005 \f005 \f005 \f005";*/
+                content: "&#x02605; \f005 \f005 \f005 \f005";
+                color: #f8ce0b;
+            }
+        </style>
 
     </div>
 

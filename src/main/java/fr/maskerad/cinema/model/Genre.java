@@ -1,32 +1,43 @@
 package fr.maskerad.cinema.model;
 
+import org.checkerframework.common.aliasing.qual.Unique;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
 @Table(name = "genres")
 public class Genre {
+    /**
+     * L'identifiant unique dans la base
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genres_id_seq")
-//    @SequenceGenerator(name = "genres_id_seq", sequenceName = "genres_id_seq" )
     @Column(name = "id", nullable = false)
-    private long id;
+    private Long id;
 
+    /**
+     * Le nom du genre
+     */
     @Basic
+    @Unique
+    @Size(min = 3, max = 30, message = "La longueur du genre doit être comprise entre 3 et 30.")
     @Column(name = "name", nullable = false, length = 30)
     private String name;
 
-
+    /**
+     * L'ensemble des films associés au genre
+     */
     @ManyToMany(mappedBy = "genres")
-    Set<Film> films;
+    private Set<Film> films;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,6 +48,14 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(Set<Film> films) {
+        this.films = films;
     }
 
     @Override
