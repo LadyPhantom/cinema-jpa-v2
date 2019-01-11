@@ -1,5 +1,8 @@
 package fr.maskerad.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,27 +15,35 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
+
     @Basic
     @Column(name = "title", nullable = true, length = 50)
     private String title;
+
     @Basic
     @Column(name = "rating", nullable = true, precision = 1)
     private BigDecimal rating;
+
     @Basic
     @Column(name = "image_path", nullable = true, length = 120)
     private String imagePath;
+
     @Basic
     @Column(name = "summary", nullable = true, length = -1)
     private String summary;
+
     @Basic
     @Column(name="release_date", nullable = true)
     private LocalDate releaseDate;
+
     @ManyToOne
     @JoinColumn(name ="film_director")
+    @JsonManagedReference
     private Personne director;
 
 
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private Set<Role> roles;
 
 
@@ -45,6 +56,7 @@ public class Film {
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews;
 
+    /*-------------------------------------------------------------------*/
 
     public long getId() {
         return id;

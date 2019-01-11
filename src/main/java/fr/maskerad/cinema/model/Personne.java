@@ -1,5 +1,6 @@
 package fr.maskerad.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,22 +14,30 @@ public class Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
+
     @Basic
     @Column(name = "surname", nullable = false, length = 60)
     private String surname;
+
     @Basic
     @Column(name = "givenname", nullable = true, length = 40)
     private String givenname;
+
     @Basic
     @Column(name = "birthday", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
+
     @Basic
     @Column(name = "image_path", nullable = true, length = 80)
     private String imagePath;
+
     @OneToMany(mappedBy = "director")
+    @JsonBackReference
     private Set<Film> directedFilms;
+
     @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private Set<Role> roles;
 
     public long getId() {

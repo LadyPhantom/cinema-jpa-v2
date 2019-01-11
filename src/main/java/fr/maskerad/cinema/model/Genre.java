@@ -1,5 +1,6 @@
 package fr.maskerad.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class Genre {
      * L'ensemble des films associés au genre
      */
     @ManyToMany(mappedBy = "genres")
+    @JsonIgnore
     private Set<Film> films;
 
 

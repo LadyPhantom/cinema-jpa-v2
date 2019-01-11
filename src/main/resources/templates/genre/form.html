@@ -40,10 +40,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestion des genres</title>
-    <div th:replace="fragments/layout :: header-css"></div>
+    <div th:replace="vues/header :: head"></div>
 </head>
 <body>
-<div th:include="fragments/layout :: header-page"></div>
+<div th:include="vues/header :: header-nav"></div>
 
 <div class="ui modal">
     <div class="ui container padded">
@@ -73,7 +73,6 @@
     </div>
 </div>
 
-
 <table class="ui selectable celled inverted table">
     <thead>
     <tr>
@@ -94,7 +93,7 @@
     Ajouter un genre
 </div>
 
-<div th:include="fragments/layout :: footer-js"></div>
+<div th:include="vues/footer :: footer"></div>
 
 <script type="application/javascript">
     $('#menu-genres').addClass("active");
@@ -219,5 +218,6 @@
 
 
 </script>
+
 </body>
 </html>

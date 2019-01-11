@@ -16,8 +16,23 @@
     </div>
 
     <!-- //////////////////////////////// Chargement des scripts ///////////////////////////////////// -->
-    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.min.js" ></script>
-    <script type="text/javascript" src="/webjars/Semantic-UI/2.4.1/semantic.min.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.min.js"
+    th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+<!--
+    <script src="webjars/jquery-form/4.2.1/jquery.form.min.js"
+            th:src="@{/webjars/jquery-form/4.2.1/jquery.form.min.js}"></script>
+-->
+
+    <script src="webjars/Semantic-UI/2.4.1/semantic.min.js"
+            th:src="@{/webjars/Semantic-UI/2.4.1/semantic.min.js}"></script>
+
+    <script src="webjars/tinymce/4.7.9/tinymce.min.js"
+            th:src="@{/webjars/tinymce/4.7.9/tinymce.min.js}"></script>
+
+    <script type="application/javascript">
+        $('.ui.dropdown.item')
+            .dropdown();
+    </script>
 
 </footer>
 
@@ -26,6 +41,21 @@
     <script type="text/css" src="webjars/font-awesome/5.6.1/css/fontawesome.min.css"></script>
 </div>
 -->
+<!--
+<div th:fragment="footer-js">
+    <script src="webjars/jquery/3.3.1-1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script src="webjars/jquery-form/4.2.1/jquery.form.min.js"
+            th:src="@{/webjars/jquery-form/4.2.1/jquery.form.min.js}"></script>
+    <script src="webjars/Semantic-UI/2.4.1/semantic.min.js"
+            th:src="@{/webjars/Semantic-UI/2.4.1/semantic.min.js}"></script>
+    <script src="webjars/tinymce/4.7.9/tinymce.min.js"
+            th:src="@{/webjars/tinymce/4.7.9/tinymce.min.js}"></script>
+    <script type="application/javascript">
+        $('.ui.dropdown.item')
+            .dropdown();
+    </script>
+</div>-->
 
 </body>
 </html>

@@ -39,4 +39,7 @@ public interface FilmsDao extends CrudRepository<Film, Long> {
 //    }
 //    @Query(value = "", nativeQuery = true)
 //    void save();
+
+    public List<Film> findAllByOrderByTitle();
+
 }

@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonneDao extends CrudRepository<Personne, Long> {
 //    @Autowired
@@ -30,4 +32,7 @@ public interface PersonneDao extends CrudRepository<Personne, Long> {
 //        }
 //        return retVal;
 //    }
+
+    public List<Personne> findAllByOrderBySurname();
+
 }
